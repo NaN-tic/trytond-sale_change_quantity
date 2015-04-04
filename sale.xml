@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="res.group" id="group_sale_change_line_quantity">
+            <field name="name">Sale Change Line Quantity</field>
+        </record>
+        <record model="res.user-res.group"
+                id="user_admin_group_sale_change_line_quantity">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="group_sale_change_line_quantity"/>
+        </record>
+
+        <!-- sale.line -->
+        <record model="ir.ui.view" id="sale_line_view_form">
+            <field name="model">sale.line</field>
+            <field name="inherit" ref="sale.sale_line_view_form"/>
+            <field name="name">sale_line_form</field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_line_view_tree">
+            <field name="model">sale.line</field>
+            <field name="inherit" ref="sale.sale_line_view_tree"/>
+            <field name="name">sale_line_tree</field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_line_view_tree_sequence">
+            <field name="model">sale.line</field>
+            <field name="inherit" ref="sale.sale_line_view_tree_sequence"/>
+            <field name="name">sale_line_tree_sequence</field>
+        </record>
+
+        <!-- sale.change_line_quantity -->
+        <record model="ir.ui.view" id="change_line_quantity_start_view_form">
+            <field name="model">sale.change_line_quantity.start</field>
+            <field name="type">form</field>
+            <field name="name">change_line_quantity_start_form</field>
+        </record>
+
+        <record model="ir.action.wizard" id="wizard_change_line_quantity">
+            <field name="name">Change Lines Quantity</field>
+            <field name="wiz_name">sale.change_line_quantity</field>
+            <field name="model">sale.sale</field>
+        </record>
+        <record model="ir.action.keyword" id="act_wizard_change_line_quantity_keyword">
+            <field name="keyword">form_action</field>
+            <field name="model">sale.sale,-1</field>
+            <field name="action" ref="wizard_change_line_quantity"/>
+        </record>
+        <record model="ir.action-res.group"
+            id="wizard_change_line_quantity-group_sale_change_line_quantity">
+            <field name="action" ref="wizard_change_line_quantity"/>
+            <field name="group" ref="group_sale_change_line_quantity"/>
+        </record>
+    </data>
+</tryton>

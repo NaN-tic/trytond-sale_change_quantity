@@ -1,0 +1,97 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:sale.change_line_quantity:"
+msgid "Quantity already delivered!"
+msgstr "¡Ya se ha enviado esta cantidad!"
+
+msgctxt "error:sale.change_line_quantity:"
+msgid "Quantity already invoiced!"
+msgstr "¡Ya se ha facturado esta cantidad!"
+
+msgctxt "error:sale.change_line_quantity:"
+msgid "There is no updateable invoice line available!"
+msgstr "No hay líneas de factura modificables"
+
+msgctxt "error:sale.change_line_quantity:"
+msgid "There is no updateable move available!"
+msgstr "¡No hay movimientos modificables!"
+
+msgctxt "error:sale.change_line_quantity:"
+msgid ""
+"You cannot modify the quantity of Sale \"%s\" because it is not in state "
+"\"Confirmed\" or \"Progressing\", or it has any Invoice or Shipment "
+"exception or it is already Paid or Sent."
+msgstr ""
+"No puede modificar la cantidad de la venta \"%s\" porque no está en estado "
+"\"Confirmada\" o \"En proceso\", o porque tiene alguna excepción de "
+"facturació o envío o porque ya está pagada o enviada."
+
+msgctxt "field:sale.change_line_quantity.start,current_quantity:"
+msgid "Current Quantity"
+msgstr "Cantidad actual"
+
+msgctxt "field:sale.change_line_quantity.start,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:sale.change_line_quantity.start,line:"
+msgid "Sale Line"
+msgstr "Línea de venta"
+
+msgctxt "field:sale.change_line_quantity.start,minimal_quantity:"
+msgid "Minimal Quantity"
+msgstr "Cantidad mínima"
+
+msgctxt "field:sale.change_line_quantity.start,new_quantity:"
+msgid "New Quantity"
+msgstr "Nueva cantidad"
+
+msgctxt "field:sale.change_line_quantity.start,sale:"
+msgid "Sale"
+msgstr "Venta"
+
+msgctxt "field:sale.change_line_quantity.start,unit:"
+msgid "Unit"
+msgstr "Unidad"
+
+msgctxt "field:sale.change_line_quantity.start,unit_digits:"
+msgid "Unit Digits"
+msgstr "Dígitos unidad"
+
+msgctxt "field:sale.line,confirmed_quantity:"
+msgid "Confirmed Quantity"
+msgstr "Cantidad confirmada"
+
+msgctxt "model:ir.action,name:wizard_change_line_quantity"
+msgid "Change Lines Quantity"
+msgstr "Modificar cantidad de la línea"
+
+msgctxt "model:res.group,name:group_sale_change_line_quantity"
+msgid "Sale Change Line Quantity"
+msgstr "Ventas Modificar cantidad de las líneas"
+
+msgctxt "model:sale.change_line_quantity.start,name:"
+msgid "Change Line Quantity - Start"
+msgstr "Modificar cantidad de la línea - Inicio"
+
+msgctxt "view:sale.change_line_quantity.start:"
+msgid "Change Line Quantity"
+msgstr "Modificar cantidad de la línea"
+
+msgctxt "view:sale.change_line_quantity.start:"
+msgid ""
+"It will change the quantity of sale lines which has been confirmed by the "
+"customer. The orinal one will be mantained in the Confirmed Quantity field."
+msgstr ""
+"Ésto cambiará la catndidad de las líneas de la venta confirmada por el "
+"cliente. La cantidad original se mantendrá en el campo Cantidad confirmada."
+
+msgctxt "wizard_button:sale.change_line_quantity,start,end:"
+msgid "Cancel"
+msgstr "Cancel·lar"
+
+msgctxt "wizard_button:sale.change_line_quantity,start,modify:"
+msgid "Modify"
+msgstr "Modificar"
