@@ -25,8 +25,7 @@ class TestCase(unittest.TestCase):
 def suite():
     suite = trytond.tests.test_tryton.suite()
     suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestCase))
-    # TODO: implement scenario
-    #suite.addTests(doctest.DocFileSuite('scenario_sale_change_quantity.rst',
-    #        setUp=doctest_setup, tearDown=doctest_teardown, encoding='utf-8',
-    #        optionflags=doctest.REPORT_ONLY_FIRST_FAILURE))
+    suite.addTests(doctest.DocFileSuite('scenario_sale_change_quantity.rst',
+            setUp=doctest_setup, tearDown=doctest_teardown, encoding='utf-8',
+            optionflags=doctest.REPORT_ONLY_FIRST_FAILURE))
     return suite

@@ -60,13 +60,15 @@ class SaleLine:
 
         # Initialize data on module installation
         if copy_qty:
-            cursor.execute(*sql_table.update(
+            # Don't use update from as SQLite doesn't support it
+            query = sql_table.update(
                     columns=[sql_table.confirmed_quantity],
                     values=[sql_table.quantity],
-                    from_=[sale],
-                    where=((sql_table.sale == sale.id)
-                        & sale.state.in_(['confirmed', 'processing', 'done']))
-                    ))
+                    where=(sql_table.sale.in_(sale.select(sale.id,
+                            where=sale.state.in_(
+                                ['confirmed', 'processing', 'done']))))
+                    )
+            cursor.execute(*query)
 
     @classmethod
     def copy(cls, lines, default=None):
