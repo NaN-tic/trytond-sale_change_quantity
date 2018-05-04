@@ -9,11 +9,11 @@ from trytond.wizard import Button, StateTransition, StateView, Wizard
 
 __all__ = ['Sale', 'SaleLine',
     'ChangeLineQuantityStart', 'ChangeLineQuantity']
-__metaclass__ = PoolMeta
 
 
 class Sale:
     __name__ = 'sale.sale'
+    __metaclass__ = PoolMeta
 
     @classmethod
     def confirm(cls, sales):
@@ -34,6 +34,8 @@ class Sale:
 
 class SaleLine:
     __name__ = 'sale.line'
+    __metaclass__ = PoolMeta
+
     confirmed_quantity = fields.Float('Confirmed Quantity',
         digits=(16, Eval('unit_digits', 2)), readonly=True,
         states={
