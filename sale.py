@@ -7,8 +7,7 @@ from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.wizard import Button, StateTransition, StateView, Wizard
 
-__all__ = ['Sale', 'SaleLine',
-    'ChangeLineQuantityStart', 'ChangeLineQuantity']
+__all__ = ['Sale', 'SaleLine', 'ChangeLineQuantityStart', 'ChangeLineQuantity']
 
 
 class Sale:
