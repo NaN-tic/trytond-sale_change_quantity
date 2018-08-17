@@ -118,7 +118,7 @@ Create an Inventory::
     >>> inventory_line.save()
     >>> Inventory.confirm([inventory.id], config.context)
     >>> inventory.state
-    u'done'
+    'done'
 
 Sale 5 products::
 
@@ -151,7 +151,7 @@ Decrease quantity before processing::
     5.0
     >>> sale.click('process')
     >>> sale.state
-    u'processing'
+    'processing'
 
 Increase quantity and check shipments and invoices are updated::
 
@@ -203,7 +203,7 @@ Increase the quantity to 6 and check shipment and invoice are updated::
     >>> move.quantity
     3.0
     >>> move.state
-    u'draft'
+    'draft'
     >>> invoice, = sale.invoices
     >>> invoice_line, = invoice.lines
     >>> invoice_line.quantity
