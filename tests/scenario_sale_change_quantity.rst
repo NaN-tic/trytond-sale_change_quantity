@@ -22,7 +22,6 @@ Install product_cost_plan Module::
 
     >>> config = activate_modules('sale_change_quantity')
 
-
 Create company::
 
     >>> _ = create_company()
@@ -58,6 +57,9 @@ Create category::
 
     >>> ProductCategory = Model.get('product.category')
     >>> category = ProductCategory(name='Category')
+    >>> category.accounting = True
+    >>> category.account_expense = expense
+    >>> category.account_revenue = revenue
     >>> category.save()
 
 Create product::
@@ -69,16 +71,13 @@ Create product::
     >>> product = Product()
     >>> template = ProductTemplate()
     >>> template.name = 'product'
-    >>> template.category = category
+    >>> template.account_category = category
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.purchasable = True
     >>> template.salable = True
     >>> template.list_price = Decimal('10')
-    >>> template.cost_price = Decimal('5')
     >>> template.cost_price_method = 'fixed'
-    >>> template.account_expense = expense
-    >>> template.account_revenue = revenue
     >>> template.save()
     >>> product.template = template
     >>> product.save()
@@ -90,10 +89,8 @@ Create product::
     >>> template.type = 'service'
     >>> template.salable = True
     >>> template.list_price = Decimal('30')
-    >>> template.cost_price = Decimal('10')
     >>> template.cost_price_method = 'fixed'
-    >>> template.account_expense = expense
-    >>> template.account_revenue = revenue
+    >>> template.account_category = category
     >>> template.save()
     >>> service.template = template
     >>> service.save()
