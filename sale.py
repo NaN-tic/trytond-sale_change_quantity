@@ -6,6 +6,8 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.wizard import Button, StateTransition, StateView, Wizard
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Sale', 'SaleLine', 'ChangeLineQuantityStart', 'ChangeLineQuantity']
 
@@ -155,22 +157,6 @@ class ChangeLineQuantity(Wizard):
             Button('Modify', 'modify', 'tryton-ok', default=True),
             ])
     modify = StateTransition()
-
-    @classmethod
-    def __setup__(cls):
-        super(ChangeLineQuantity, cls).__setup__()
-        cls._error_messages.update({
-                'invalid_sale_state': ('You cannot modify the quantity of '
-                    'Sale "%s" because it is not in state "Confirmed" or '
-                    '"Progressing", or it has any Invoice or Shipment '
-                    'exception or it is already Paid or Sent.'),
-                'quantity_already_delivered': 'Quantity already delivered!',
-                'no_updateable_move': ('There is no updateable move '
-                    'available!'),
-                'quantity_already_invoiced': 'Quantity already invoiced!',
-                'no_updateable_line': ('There is no updateable invoice line '
-                    'available!'),
-                })
 
     def default_start(self, fields):
         Sale = Pool().get('sale.sale')
