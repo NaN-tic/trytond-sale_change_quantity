@@ -205,7 +205,8 @@ class ChangeLineQuantity(Wizard):
                         and move.sale_exception_state == 'ignored')):
                 quantity -= Uom.compute_qty(move.uom, move.quantity, line.unit)
         if quantity < 0:
-            raise UserError(gettext('quantity_already_delivered'))
+            raise UserError(
+                gettext('sale_change_quantity.quantity_already_delivered'))
 
         if line.sale.shipment_method != 'order':
             return
@@ -247,7 +248,7 @@ class ChangeLineQuantity(Wizard):
             [m for m in self.start.line.moves if m.state == 'draft'],
             key=self._move_key)
         if not moves:
-            raise UserError(gettext('no_updateable_move'))
+            raise UserError(gettext('sale_change_quantity.no_updateable_move'))
         return moves
 
     def _move_key(self, move):
@@ -267,7 +268,8 @@ class ChangeLineQuantity(Wizard):
                 quantity -= Uom.compute_qty(iline.unit, iline.quantity,
                     line.unit)
         if quantity < 0:
-            raise UserError(gettext('quantity_already_invoiced'))
+            raise UserError(
+                gettext('sale_change_quantity.quantity_already_invoiced'))
 
         if line.sale.invoice_method != 'order':
             return
@@ -299,7 +301,7 @@ class ChangeLineQuantity(Wizard):
                 if not l.invoice or l.invoice.state == 'draft'],
             key=self._invoice_line_key)
         if not invoice_lines:
-            raise UserError(gettext('no_updateable_line'))
+            raise UserError(gettext('sale_change_quantity.no_updateable_line'))
         return invoice_lines
 
     def _invoice_line_key(self, invoice_line):
