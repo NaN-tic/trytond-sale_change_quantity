@@ -4,7 +4,7 @@ this repository contains the full copyright notices and license terms. -->
 <tryton>
     <data group="1">
       <record model="ir.message" id="invalid_sale_state">
-          <field name="text">You cannot modify the quantity of Sale "%s" because it is not in state "Confirmed" or "Progressing", or it has any Invoice or Shipment exception or it is already Paid or Sent.</field>
+          <field name="text">You cannot modify the quantity of Sale "%(sale)s" because it is not in state "Confirmed" or "Progressing", or it has any Invoice or Shipment exception or it is already Paid or Sent.</field>
       </record>
       <record model="ir.message" id="quantity_already_delivered">
           <field name="text">Quantity already delivered!'</field>
