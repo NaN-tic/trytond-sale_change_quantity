@@ -49,12 +49,11 @@ class SaleLine(metaclass=PoolMeta):
     def __register__(cls, module_name):
         pool = Pool()
         Sale = pool.get('sale.sale')
-        TableHandler = backend.get('TableHandler')
         cursor = Transaction().connection.cursor()
         sql_table = cls.__table__()
         sale = Sale.__table__()
 
-        table = TableHandler(cls, module_name)
+        table = backend.TableHandler(cls, module_name)
         copy_qty = not table.column_exist('confirmed_quantity')
 
         super(SaleLine, cls).__register__(module_name)
