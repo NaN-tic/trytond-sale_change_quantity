@@ -90,7 +90,7 @@ msgstr ""
 
 msgctxt "wizard_button:sale.change_line_quantity,start,end:"
 msgid "Cancel"
-msgstr "Cancel·lar"
+msgstr "Cancelar"
 
 msgctxt "wizard_button:sale.change_line_quantity,start,modify:"
 msgid "Modify"
