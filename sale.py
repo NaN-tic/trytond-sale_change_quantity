@@ -120,7 +120,7 @@ class ChangeLineQuantityStart(ModelView):
         invoiced_quantity = 0
         for iline in (self.line.invoice_lines if self.line else []):
             if (iline.invoice.state in ('validated', 'posted', 'paid')
-                    or (iline.invoice.state == 'cancel'
+                    or (iline.invoice.state == 'cancelled'
                         and iline.invoice.sale_exception_state == 'ignored')):
                 invoiced_quantity += Uom.compute_qty(iline.unit,
                     iline.quantity, self.line.unit)
@@ -128,7 +128,7 @@ class ChangeLineQuantityStart(ModelView):
         shipped_quantity = 0
         for move in (self.line.moves if self.line else []):
             if (move.state in ('assigned', 'done')
-                    or (move.state == 'cancel'
+                    or (move.state == 'cancelled'
                         and move.sale_exception_state == 'ignored')):
                 shipped_quantity += Uom.compute_qty(move.uom, move.quantity,
                     self.line.unit)
@@ -200,7 +200,7 @@ class ChangeLineQuantity(Wizard):
 
         for move in line.moves:
             if (move.state in ('assigned', 'done')
-                    or (move.state == 'cancel'
+                    or (move.state == 'cancelled'
                         and move.sale_exception_state == 'ignored')):
                 quantity -= Uom.compute_qty(move.uom, move.quantity, line.unit)
         if quantity < 0:
