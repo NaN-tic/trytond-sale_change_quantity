@@ -36,14 +36,14 @@ class SaleLine(metaclass=PoolMeta):
     __name__ = 'sale.line'
 
     confirmed_quantity = fields.Float('Confirmed Quantity',
-        digits=(16, Eval('unit_digits', 2)), readonly=True,
+        digits='unit', readonly=True,
         states={
             'invisible': ((Eval('type') != 'line')
                 | (Eval('quantity') == Eval('confirmed_quantity'))
                 | ~Eval('_parent_sale', {}).get('state',
                     '').in_(['confirmed', 'processing', 'done'])),
             },
-        depends=['type', 'quantity', 'unit_digits'])
+        depends=['type', 'quantity'])
 
     @classmethod
     def __register__(cls, module_name):
@@ -93,20 +93,17 @@ class ChangeLineQuantityStart(ModelView):
             ],
         depends=['sale'])
     current_quantity = fields.Float('Current Quantity',
-        digits=(16, Eval('unit_digits', 2)), readonly=True,
-        depends=['unit_digits'])
+        digits='unit', readonly=True)
     new_quantity = fields.Float('New Quantity',
-        digits=(16, Eval('unit_digits', 2)), required=True,
+        digits='unit', required=True,
         domain=[
             ('new_quantity', '!=', Eval('current_quantity')),
             ('new_quantity', '>=', Eval('minimal_quantity')),
             ],
-        depends=['unit_digits', 'current_quantity', 'minimal_quantity'])
+        depends=['current_quantity', 'minimal_quantity'])
     minimal_quantity = fields.Float('Minimal Quantity',
-        digits=(16, Eval('unit_digits', 2)), readonly=True,
-        depends=['unit_digits'])
+        digits='unit', readonly=True)
     unit = fields.Many2One('product.uom', 'Unit', readonly=True)
-    unit_digits = fields.Integer('Unit Digits', readonly=True)
 
     @fields.depends('line')
     def on_change_with_current_quantity(self):
@@ -139,11 +136,6 @@ class ChangeLineQuantityStart(ModelView):
     def on_change_with_unit(self):
         if self.line:
             return self.line.unit.id
-
-    @fields.depends('line')
-    def on_change_with_unit_digits(self):
-        if self.line:
-            return self.line.unit.digits
 
 
 class ChangeLineQuantity(Wizard):

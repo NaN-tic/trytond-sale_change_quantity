@@ -30,10 +30,6 @@ msgctxt "field:sale.change_line_quantity.start,unit:"
 msgid "Unit"
 msgstr "Unitat"
 
-msgctxt "field:sale.change_line_quantity.start,unit_digits:"
-msgid "Unit Digits"
-msgstr "Dígits de la unitat"
-
 msgctxt "field:sale.line,confirmed_quantity:"
 msgid "Confirmed Quantity"
 msgstr "Quantitat confirmada"
