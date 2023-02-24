@@ -178,7 +178,6 @@ Partially process the shipment::
     >>> for move in shipment.inventory_moves:
     ...     move.quantity = 3.0
     >>> shipment.click('assign_try')
-    True
     >>> shipment.click('pick')
     >>> shipment.click('pack')
     >>> shipment.click('done')
