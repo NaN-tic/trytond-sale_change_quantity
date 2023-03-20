@@ -153,8 +153,9 @@ class ChangeLineQuantity(Wizard):
         Sale = Pool().get('sale.sale')
         sale = Sale(Transaction().context['active_id'])
         if (sale.state not in ('confirmed', 'processing')
-                or sale.invoice_state not in ('none', 'waiting')
-                or sale.shipment_state not in ('none', 'waiting')):
+                or sale.invoice_state not in ('none', 'waiting', 'pending')
+                or sale.shipment_state not in ('none', 'waiting',
+                    'partially shipped')):
             raise UserError(gettext('sale_change_quantity.invalid_sale_state',
                     sale=sale.rec_name))
         return {
