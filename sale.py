@@ -127,7 +127,7 @@ class ChangeLineQuantityStart(ModelView):
             if (move.state in ('assigned', 'done')
                     or (move.state == 'cancelled'
                         and move.sale_exception_state == 'ignored')):
-                shipped_quantity += Uom.compute_qty(move.uom, move.quantity,
+                shipped_quantity += Uom.compute_qty(move.unit, move.quantity,
                     self.line.unit)
 
         return max(invoiced_quantity, shipped_quantity)
@@ -195,7 +195,7 @@ class ChangeLineQuantity(Wizard):
             if (move.state in ('assigned', 'done')
                     or (move.state == 'cancelled'
                         and move.sale_exception_state == 'ignored')):
-                quantity -= Uom.compute_qty(move.uom, move.quantity, line.unit)
+                quantity -= Uom.compute_qty(move.unit, move.quantity, line.unit)
         if quantity < 0:
             raise UserError(
                 gettext('sale_change_quantity.quantity_already_delivered'))
@@ -214,7 +214,7 @@ class ChangeLineQuantity(Wizard):
             Move.delete(updateable_moves)
         else:
             move = updateable_moves.pop(0)
-            move.quantity = Uom.compute_qty(line.unit, quantity, move.uom)
+            move.quantity = Uom.compute_qty(line.unit, quantity, move.unit)
             move.save()
             if updateable_moves:
                 Move.delete(updateable_moves)
