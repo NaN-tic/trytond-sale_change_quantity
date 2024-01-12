@@ -42,8 +42,7 @@ class SaleLine(metaclass=PoolMeta):
                 | (Eval('quantity') == Eval('confirmed_quantity'))
                 | ~Eval('_parent_sale', {}).get('state',
                     '').in_(['confirmed', 'processing', 'done'])),
-            },
-        depends=['type', 'quantity'])
+            })
 
     @classmethod
     def __register__(cls, module_name):
@@ -90,8 +89,7 @@ class ChangeLineQuantityStart(ModelView):
             ('sale', '=', Eval('sale')),
             # ('invoice_lines.invoice.state', '=', 'draft'),
             # ('moves.state', '=', 'draft'),
-            ],
-        depends=['sale'])
+            ])
     current_quantity = fields.Float('Current Quantity',
         digits='unit', readonly=True)
     new_quantity = fields.Float('New Quantity',
@@ -99,8 +97,7 @@ class ChangeLineQuantityStart(ModelView):
         domain=[
             ('new_quantity', '!=', Eval('current_quantity')),
             ('new_quantity', '>=', Eval('minimal_quantity')),
-            ],
-        depends=['current_quantity', 'minimal_quantity'])
+            ])
     minimal_quantity = fields.Float('Minimal Quantity',
         digits='unit', readonly=True)
     unit = fields.Many2One('product.uom', 'Unit', readonly=True)
