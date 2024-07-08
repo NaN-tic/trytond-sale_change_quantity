@@ -150,8 +150,7 @@ class ChangeLineQuantity(Wizard):
     modify = StateTransition()
 
     def default_start(self, fields):
-        Sale = Pool().get('sale.sale')
-        sale = Sale(Transaction().context['active_id'])
+        sale = self.record
         if (sale.state not in ('confirmed', 'processing')
                 or sale.invoice_state not in ('none', 'waiting')
                 or sale.shipment_state not in ('none', 'waiting')):
@@ -209,6 +208,14 @@ class ChangeLineQuantity(Wizard):
                     for m in updateable_moves
                     if isinstance(m.shipment, ShipmentOutReturn)]))
 
+        # not allow change quantity in case inventory moves are done
+        if (any([move.state == 'done'
+                for shipment in ShipmentOut.browse(shipments_out)
+                for move in shipment.inventory_moves])):
+            raise UserError(
+                gettext('sale_change_quantity.msg_shipment_inventory_move_done',
+                sale=line.sale.rec_name))
+
         if updateable_moves and quantity < line.unit.rounding:
             Move.delete(updateable_moves)
         else:
@@ -229,7 +236,7 @@ class ChangeLineQuantity(Wizard):
                 ShipmentOut.delete(shipments_out)
         if shipments_out_return:
             shipments_out_return = [s
-                for s in ShipmentOutReturn.browse(shipments_out)
+                for s in ShipmentOutReturn.browse(shipments_out_return)
                 if not s.incoming_moves]
             if shipments_out_return:
                 ShipmentOutReturn.delete(shipments_out_return)

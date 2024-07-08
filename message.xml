@@ -18,5 +18,8 @@ this repository contains the full copyright notices and license terms. -->
       <record model="ir.message" id="no_updateable_line">
           <field name="text">There is no updateable invoice line available!</field>
       </record>
+      <record model="ir.message" id="msg_shipment_inventory_move_done">
+          <field name="text">You cannot modify the quantity of Sale "%(sale)s" because some inventory moves are done.</field>
+      </record>
     </data>
 </tryton>
