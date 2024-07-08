@@ -44,7 +44,7 @@ msgid ""
 "state \"Confirmed\" or \"Progressing\", or it has any Invoice or Shipment "
 "exception or it is already Paid or Sent."
 msgstr ""
-"No puede modificar la cantidad de la Venta \"%(venta s\" porque no está en "
+"No puede modificar la cantidad de la Venta \"%(sale)s\" porque no está en "
 "estado \"Confirmado\" o \"Progresando\", o tiene alguna excepción de Factura"
 " o Envío o ya está Pagado o Enviado."
 
