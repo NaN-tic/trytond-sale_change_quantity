@@ -1,6 +1,5 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
-from trytond import backend
 from trytond.model import ModelView, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
@@ -52,7 +51,7 @@ class SaleLine(metaclass=PoolMeta):
         sql_table = cls.__table__()
         sale = Sale.__table__()
 
-        table = backend.TableHandler(cls, module_name)
+        table = cls.__table_handler__(module_name)
         copy_qty = not table.column_exist('confirmed_quantity')
 
         super(SaleLine, cls).__register__(module_name)
