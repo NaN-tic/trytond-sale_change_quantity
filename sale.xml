@@ -6,11 +6,6 @@
         <record model="res.group" id="group_sale_change_line_quantity">
             <field name="name">Sale Change Line Quantity</field>
         </record>
-        <record model="res.user-res.group"
-                id="user_admin_group_sale_change_line_quantity">
-            <field name="user" ref="res.user_admin"/>
-            <field name="group" ref="group_sale_change_line_quantity"/>
-        </record>
 
         <!-- sale.line -->
         <record model="ir.ui.view" id="sale_line_view_form">
