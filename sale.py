@@ -15,6 +15,7 @@ class Sale(metaclass=PoolMeta):
     __name__ = 'sale.sale'
 
     @classmethod
+    @ModelView.button
     def confirm(cls, sales):
         pool = Pool()
         SaleLine = pool.get('sale.line')
